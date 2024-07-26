@@ -36,7 +36,7 @@ if __name__ == "__main__":
     password = "WierdScience#23"  # os.getenv("mysql_password")
 
     connection = create_connection(host_name=host, username=user, password=password)
-    create_database_query = "CREATE DATABASE alx_book_store"
+    create_database_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
     execute_query(connection=connection, query=create_database_query)
 
     create_table_query = """
