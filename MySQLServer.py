@@ -1,5 +1,6 @@
 import os
 import mysql.connector
+from mysql.connector import Error
 from dotenv import load_dotenv
 
 # load_dotenv()
@@ -12,7 +13,7 @@ def create_connection(host_name, username, password):
             host=host_name, user=username, password=password
         )
         print("Successful connection to MySQL server")
-    except Exception as e:
+    except mysql.connector.Error as e:
         print(f"Error occurred: {e}")
     return connection
 
@@ -33,7 +34,7 @@ def execute_query(connection, query):
 if __name__ == "__main__":
     host = "localhost"
     user = "root"
-    password = "WierdScience#23"  # os.getenv("mysql_password")
+    password = os.getenv("mysql_password")
 
     connection = create_connection(host_name=host, username=user, password=password)
     create_database_query = "CREATE DATABASE IF NOT EXISTS alx_book_store"
